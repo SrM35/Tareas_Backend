@@ -4,7 +4,6 @@ import { Url } from "../types/Url";
 
 const resolveUrlService: ServiceWithProps<Url, { shortCode: string }> = async (payload) => {
   try {
-    // Find URL by short code
     const url = await UrlDAL.findOne({ where: { shortCode: payload.shortCode } });
 
     if (!url) {
@@ -21,7 +20,6 @@ const resolveUrlService: ServiceWithProps<Url, { shortCode: string }> = async (p
       };
     }
 
-    // Increment click count
     url.clickCount += 1;
     await UrlDAL.save(url);
 

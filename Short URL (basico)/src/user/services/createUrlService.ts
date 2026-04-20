@@ -28,10 +28,8 @@ const createUrlService: ServiceWithProps<Url, { email: string; originalUrl: stri
       };
     }
 
-    // Generate or use custom short code
     let shortCode = payload.customCode || generateShortCode(6);
 
-    // Check if short code already exists (prevent hash collision)
     let existingUrl = await UrlDAL.findOne({ where: { shortCode } });
     let attempts = 0;
     const maxAttempts = 10;

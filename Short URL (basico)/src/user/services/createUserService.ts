@@ -8,7 +8,6 @@ const createUserService: ServiceWithProps<safeUser, createUserDTO> = async (
   userPayload,
 ) => {
   try {
-    // Check if email already exists
     const existingUser = await UserDAL.findOne({ where: { email: userPayload.email } });
     if (existingUser) {
       return {
